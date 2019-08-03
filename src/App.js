@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import Header from './components/Header'
 import Formulario from './components/Formulario'
 import Error from './components/Error'
+import Clima from './components/Clima'
 
 function App() {
-  const[ciudad,guardarCiudad] = useState('');
-  const[pais, guardarPais ]= useState('');
-  const[error, guardarError] = useState(false);
+  const[ciudad,guardarCiudad] = useState('')
+  const[pais, guardarPais ]= useState('')
+  const[error, guardarError] = useState(false)
+  const[resultado,guardarResultado] = useState({})
 
   useEffect(()=>{
     //prevenir la ejecucion al principio
@@ -17,10 +19,10 @@ function App() {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appid}`
 
       //consultar a la url 
-      const respuesta = await fetch(url);
-      const resultado = await respuesta.json();
+      const respuesta = await fetch(url)
+      const resultado = await respuesta.json()
 
-      console.log(resultado);
+      guardarResultado(resultado)
       console.log("hola")
 
       
@@ -43,7 +45,7 @@ function App() {
   if(error){
     componente = <Error mensaje = "Faltan completar datos"></Error>
   }else{
-    componente = null;
+    componente = <Clima resultado = {resultado}></Clima>;
   }
   return (
     <div className = "app">

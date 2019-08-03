@@ -16,10 +16,10 @@ function Formulario({datosConsulta}){
             //y suma lo nuevo
             ...busqueda,
             [e.target.name]:e.target.value
-        });
+        })
     }
     const consultarClima = e=>{
-        e.preventDefault();
+        e.preventDefault()
         //pasa hacia el componente princial la busqueda
         datosConsulta(busqueda)
 
@@ -50,7 +50,9 @@ function Formulario({datosConsulta}){
                 </select>
             </div>
             <div className = "input-field col s12">
-                <input type="submit" className = "waves-effect waves-light btn-large btn-block green accent-4" value="buscar clima"/>
+                <button type="submit" className = "waves-effect waves-light btn-large btn-block green accent-4" value="buscar clima">
+                    buscar clima
+                </button>
             </div>
         </form>
     )
